@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace lib
 {
@@ -14,8 +15,16 @@ namespace lib
         public string Title
         {
             get { return _Title; }
-            set { _Title = value; }
-        }
+            set 
+            {
+                if (value.Any(char.IsDigit))
+                {
+                    throw new ArgumentException("Title cannot contain digits.");
+                }   
+                _Title = value;
+            }
+        } // check if any incoming char is a digit
+         
         public string Author
         {
             get { return _Author; }
